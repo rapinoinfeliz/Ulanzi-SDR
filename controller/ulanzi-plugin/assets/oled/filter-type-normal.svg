@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Filter window — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  
+  <path d="M25 82h18V58c0-17 12-30 29-30s29 13 29 30v24h18" fill="none" stroke="#F5F7F8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M43 82h58" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

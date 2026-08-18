@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">RDS error correction — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  <rect x="4" y="4" width="136" height="136" rx="20" fill="none" stroke="#278CFF" stroke-width="5"/>
+  <path d="M72 18l39 14v26c0 24-16 37-39 45-23-8-39-21-39-45V32z" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M51 59l14 14 29-31" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

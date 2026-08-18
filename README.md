@@ -36,6 +36,7 @@ O diretório do Ulanzi é produzido por `npm run package:ulanzi`. O DLL do SDR# 
 - [Windows + SDR#](docs/INSTALL-WINDOWS.md)
 - [Arquitetura e limites](docs/ARCHITECTURE.md)
 - [Protocolo IPC](docs/PROTOCOL.md)
+- [Sistema de ícones OLED Minimal](docs/OLED-ICON-SYSTEM.md)
 
 ## Desenvolvimento e validação
 

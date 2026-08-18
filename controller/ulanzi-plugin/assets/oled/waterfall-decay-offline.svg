@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Waterfall decay — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#07090B"/>
+  
+  <path d="M31 23v56M52 23v44M73 23v66M94 23v49M115 23v33" fill="none" stroke="#59616B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 76l10 13 10-13M63 76l10 13 10-13" fill="none" stroke="#343A40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

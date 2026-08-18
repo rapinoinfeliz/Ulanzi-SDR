@@ -36,6 +36,7 @@ declare module "ulanzideck-api" {
     setGlobalSettings(settings: Record<string, unknown>, context?: string): void;
     setSettings(settings: Record<string, unknown>, context: string): void;
     setStateIcon(context: string, state: number, text?: string): void;
+    setPathIcon(context: string, path: string, text?: string): void;
     setFeedbackLayout(context: string, layout: string): void;
     setFeedback(context: string, values: Record<string, unknown>): void;
     showAlert(context: string): void;

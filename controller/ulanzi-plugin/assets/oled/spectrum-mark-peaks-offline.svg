@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Mark peaks — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#07090B"/>
+  
+  <path d="M20 87l20-36 15 23 19-49 18 43 13-22 19 41" fill="none" stroke="#59616B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="51" r="5" fill="#343A40"/><circle cx="74" cy="25" r="5" fill="#343A40"/><circle cx="105" cy="46" r="5" fill="#343A40"/>
+</svg>

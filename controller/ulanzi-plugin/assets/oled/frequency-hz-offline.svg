@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Frequency — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#07090B"/>
+  
+  <circle cx="72" cy="58" r="38" fill="none" stroke="#59616B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="72" cy="58" r="7" fill="#59616B"/><path d="M72 58l24-24" fill="none" stroke="#343A40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M106 31c8 7 12 16 14 26" fill="none" stroke="#343A40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

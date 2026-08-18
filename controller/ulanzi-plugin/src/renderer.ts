@@ -25,7 +25,14 @@ export class UlanziRenderer {
   renderContext(context: ActionContext, state: RadioState): void {
     const { title, value, active } = displayValue(context, state, this.actions.getSelectedPresetName(), this.settings.get().activeLayer, this.hub.getCapabilities());
     const stateIndex = !state.sourceConnected ? 0 : active ? 2 : 1;
-    this.api.setStateIcon(context.context, stateIndex, `${title}\n${value}`);
+    const icon = iconForContext(context, state, this.settings.get().activeLayer);
+    const variant = !state.sourceConnected ? "offline" : active ? "active" : "normal";
+    try {
+      this.api.setPathIcon(context.context, `./assets/oled/${iconSlug(icon)}-${variant}.svg`, `${title}\n${value}`);
+    } catch (error) {
+      this.api.logMessage(`OLED icon fallback for ${icon}: ${String(error)}`, "warn");
+      this.api.setStateIcon(context.context, stateIndex, `${title}\n${value}`);
+    }
 
     if (context.isEncoder && this.settings.get().enableV31Feedback) {
       try {
@@ -51,6 +58,28 @@ export class UlanziRenderer {
       if (context.active) this.renderContext(context, state);
     }
   }
+}
+
+export function iconForContext(context: ActionContext, state: RadioState, layer: string): string {
+  switch (context.kind) {
+    case "frequency": return "frequencyHz";
+    case "volume": return state.muted ? "muted" : "volume";
+    case "filter": return "bandwidthHz";
+    case "mode": return "mode";
+    case "gain": return state.rf?.lna === true ? "rf.lna" : "rf.attenuationDb";
+    case "preset": return "preset";
+    case "recording": return "record.audio";
+    case "layer": return "layer";
+    case "layered": return layer === "rf" ? "rf.attenuationDb" : layer === "memory" ? "preset" : "frequencyHz";
+    case "configurable": return context.mapping?.rotate?.control
+      ?? context.mapping?.press?.control
+      ?? context.mapping?.holdRotate?.control
+      ?? "configurable";
+  }
+}
+
+export function iconSlug(value: string): string {
+  return value.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replaceAll(".", "-").toLowerCase();
 }
 
 function displayValue(

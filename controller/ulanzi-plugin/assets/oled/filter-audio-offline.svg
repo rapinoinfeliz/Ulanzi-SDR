@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Audio filter — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#07090B"/>
+  
+  <path d="M24 60h18l8-24 13 47 15-57 12 34h30" fill="none" stroke="#59616B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 25h28L81 46v24l-14 8V46z" fill="none" stroke="#343A40" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

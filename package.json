@@ -1,6 +1,6 @@
 {
   "name": "ulanzi-sdr-control",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -9,6 +9,7 @@
   "scripts": {
     "build": "npm run typecheck && node scripts/build-controller.mjs",
     "build:controller": "node scripts/build-controller.mjs",
+    "icons:generate": "node scripts/generate-oled-icons.mjs",
     "package:ulanzi": "npm run build && node scripts/package-ulanzi.mjs",
     "test": "vitest run",
     "test:watch": "vitest",

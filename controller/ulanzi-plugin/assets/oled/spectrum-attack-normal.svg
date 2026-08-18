@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Spectrum attack — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  
+  <rect x="26" y="69" width="15" height="22" rx="3" fill="#F5F7F8"/><rect x="52" y="54" width="15" height="37" rx="3" fill="#F5F7F8"/><rect x="78" y="39" width="15" height="52" rx="3" fill="#F5F7F8"/><path d="M27 52l30-20 23 8 32-21" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

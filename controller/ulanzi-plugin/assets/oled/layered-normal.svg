@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Layered control — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  
+  <circle cx="72" cy="58" r="16" fill="#278CFF"/><circle cx="31" cy="30" r="12" fill="none" stroke="#F5F7F8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="113" cy="30" r="12" fill="none" stroke="#F5F7F8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="72" cy="96" r="12" fill="none" stroke="#F5F7F8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 37l20 14M102 37L82 51M72 74v10" fill="none" stroke="#F5F7F8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

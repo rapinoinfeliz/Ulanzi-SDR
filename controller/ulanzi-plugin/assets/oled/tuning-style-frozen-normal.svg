@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Freeze tuning style — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  
+  <path d="M72 18v78M38 38l68 39M38 77l68-39M62 29l10 10 10-10M62 85l10-10 10 10" fill="none" stroke="#F5F7F8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="72" cy="57" r="8" fill="#278CFF"/>
+</svg>

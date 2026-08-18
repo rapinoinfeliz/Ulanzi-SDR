@@ -1,0 +1,506 @@
+{
+  "style": "OLED Minimal",
+  "version": 1,
+  "controls": [
+    {
+      "id": "frequencyHz",
+      "label": "Frequency",
+      "category": "Tuning",
+      "files": {
+        "normal": "frequency-hz-normal.svg",
+        "active": "frequency-hz-active.svg",
+        "offline": "frequency-hz-offline.svg"
+      }
+    },
+    {
+      "id": "centerFrequencyHz",
+      "label": "Center frequency",
+      "category": "Tuning",
+      "files": {
+        "normal": "center-frequency-hz-normal.svg",
+        "active": "center-frequency-hz-active.svg",
+        "offline": "center-frequency-hz-offline.svg"
+      }
+    },
+    {
+      "id": "stepHz",
+      "label": "Tuning step",
+      "category": "Tuning",
+      "files": {
+        "normal": "step-hz-normal.svg",
+        "active": "step-hz-active.svg",
+        "offline": "step-hz-offline.svg"
+      }
+    },
+    {
+      "id": "snapToGrid",
+      "label": "Snap to grid",
+      "category": "Tuning",
+      "files": {
+        "normal": "snap-to-grid-normal.svg",
+        "active": "snap-to-grid-active.svg",
+        "offline": "snap-to-grid-offline.svg"
+      }
+    },
+    {
+      "id": "frequencyShift.enabled",
+      "label": "Frequency shift",
+      "category": "Tuning",
+      "files": {
+        "normal": "frequency-shift-enabled-normal.svg",
+        "active": "frequency-shift-enabled-active.svg",
+        "offline": "frequency-shift-enabled-offline.svg"
+      }
+    },
+    {
+      "id": "frequencyShiftHz",
+      "label": "Frequency shift value",
+      "category": "Tuning",
+      "files": {
+        "normal": "frequency-shift-hz-normal.svg",
+        "active": "frequency-shift-hz-active.svg",
+        "offline": "frequency-shift-hz-offline.svg"
+      }
+    },
+    {
+      "id": "centerFrequencyLocked",
+      "label": "Lock center frequency",
+      "category": "Tuning",
+      "files": {
+        "normal": "center-frequency-locked-normal.svg",
+        "active": "center-frequency-locked-active.svg",
+        "offline": "center-frequency-locked-offline.svg"
+      }
+    },
+    {
+      "id": "tuning.style",
+      "label": "Tuning style",
+      "category": "Tuning",
+      "files": {
+        "normal": "tuning-style-normal.svg",
+        "active": "tuning-style-active.svg",
+        "offline": "tuning-style-offline.svg"
+      }
+    },
+    {
+      "id": "tuning.styleFrozen",
+      "label": "Freeze tuning style",
+      "category": "Tuning",
+      "files": {
+        "normal": "tuning-style-frozen-normal.svg",
+        "active": "tuning-style-frozen-active.svg",
+        "offline": "tuning-style-frozen-offline.svg"
+      }
+    },
+    {
+      "id": "tuning.limit",
+      "label": "Tuning limit",
+      "category": "Tuning",
+      "files": {
+        "normal": "tuning-limit-normal.svg",
+        "active": "tuning-limit-active.svg",
+        "offline": "tuning-limit-offline.svg"
+      }
+    },
+    {
+      "id": "volume",
+      "label": "Volume",
+      "category": "Audio",
+      "files": {
+        "normal": "volume-normal.svg",
+        "active": "volume-active.svg",
+        "offline": "volume-offline.svg"
+      }
+    },
+    {
+      "id": "muted",
+      "label": "Mute",
+      "category": "Audio",
+      "files": {
+        "normal": "muted-normal.svg",
+        "active": "muted-active.svg",
+        "offline": "muted-offline.svg"
+      }
+    },
+    {
+      "id": "audio.panning",
+      "label": "Audio panning",
+      "category": "Audio",
+      "files": {
+        "normal": "audio-panning-normal.svg",
+        "active": "audio-panning-active.svg",
+        "offline": "audio-panning-offline.svg"
+      }
+    },
+    {
+      "id": "unityGain",
+      "label": "Unity gain",
+      "category": "Audio",
+      "files": {
+        "normal": "unity-gain-normal.svg",
+        "active": "unity-gain-active.svg",
+        "offline": "unity-gain-offline.svg"
+      }
+    },
+    {
+      "id": "filter.audio",
+      "label": "Audio filter",
+      "category": "Audio",
+      "files": {
+        "normal": "filter-audio-normal.svg",
+        "active": "filter-audio-active.svg",
+        "offline": "filter-audio-offline.svg"
+      }
+    },
+    {
+      "id": "mode",
+      "label": "Demodulation mode",
+      "category": "Demodulation",
+      "files": {
+        "normal": "mode-normal.svg",
+        "active": "mode-active.svg",
+        "offline": "mode-offline.svg"
+      }
+    },
+    {
+      "id": "bandwidthHz",
+      "label": "Filter bandwidth",
+      "category": "Demodulation",
+      "files": {
+        "normal": "bandwidth-hz-normal.svg",
+        "active": "bandwidth-hz-active.svg",
+        "offline": "bandwidth-hz-offline.svg"
+      }
+    },
+    {
+      "id": "filter.type",
+      "label": "Filter window",
+      "category": "Demodulation",
+      "files": {
+        "normal": "filter-type-normal.svg",
+        "active": "filter-type-active.svg",
+        "offline": "filter-type-offline.svg"
+      }
+    },
+    {
+      "id": "filter.order",
+      "label": "Filter order",
+      "category": "Demodulation",
+      "files": {
+        "normal": "filter-order-normal.svg",
+        "active": "filter-order-active.svg",
+        "offline": "filter-order-offline.svg"
+      }
+    },
+    {
+      "id": "cwShiftHz",
+      "label": "CW shift",
+      "category": "Demodulation",
+      "files": {
+        "normal": "cw-shift-hz-normal.svg",
+        "active": "cw-shift-hz-active.svg",
+        "offline": "cw-shift-hz-offline.svg"
+      }
+    },
+    {
+      "id": "fm.stereo",
+      "label": "FM stereo",
+      "category": "Demodulation",
+      "files": {
+        "normal": "fm-stereo-normal.svg",
+        "active": "fm-stereo-active.svg",
+        "offline": "fm-stereo-offline.svg"
+      }
+    },
+    {
+      "id": "carrier.lock",
+      "label": "Carrier lock",
+      "category": "Demodulation",
+      "files": {
+        "normal": "carrier-lock-normal.svg",
+        "active": "carrier-lock-active.svg",
+        "offline": "carrier-lock-offline.svg"
+      }
+    },
+    {
+      "id": "antiFading",
+      "label": "Anti-fading",
+      "category": "Demodulation",
+      "files": {
+        "normal": "anti-fading-normal.svg",
+        "active": "anti-fading-active.svg",
+        "offline": "anti-fading-offline.svg"
+      }
+    },
+    {
+      "id": "demodulation.bypass",
+      "label": "Bypass demodulation",
+      "category": "Demodulation",
+      "files": {
+        "normal": "demodulation-bypass-normal.svg",
+        "active": "demodulation-bypass-active.svg",
+        "offline": "demodulation-bypass-offline.svg"
+      }
+    },
+    {
+      "id": "squelch.enabled",
+      "label": "Squelch",
+      "category": "Squelch",
+      "files": {
+        "normal": "squelch-enabled-normal.svg",
+        "active": "squelch-enabled-active.svg",
+        "offline": "squelch-enabled-offline.svg"
+      }
+    },
+    {
+      "id": "squelch.threshold",
+      "label": "Squelch threshold",
+      "category": "Squelch",
+      "files": {
+        "normal": "squelch-threshold-normal.svg",
+        "active": "squelch-threshold-active.svg",
+        "offline": "squelch-threshold-offline.svg"
+      }
+    },
+    {
+      "id": "dsp.agc",
+      "label": "DSP AGC",
+      "category": "AGC",
+      "files": {
+        "normal": "dsp-agc-normal.svg",
+        "active": "dsp-agc-active.svg",
+        "offline": "dsp-agc-offline.svg"
+      }
+    },
+    {
+      "id": "agc.hang",
+      "label": "AGC hang",
+      "category": "AGC",
+      "files": {
+        "normal": "agc-hang-normal.svg",
+        "active": "agc-hang-active.svg",
+        "offline": "agc-hang-offline.svg"
+      }
+    },
+    {
+      "id": "agc.threshold",
+      "label": "AGC threshold",
+      "category": "AGC",
+      "files": {
+        "normal": "agc-threshold-normal.svg",
+        "active": "agc-threshold-active.svg",
+        "offline": "agc-threshold-offline.svg"
+      }
+    },
+    {
+      "id": "agc.decay",
+      "label": "AGC decay",
+      "category": "AGC",
+      "files": {
+        "normal": "agc-decay-normal.svg",
+        "active": "agc-decay-active.svg",
+        "offline": "agc-decay-offline.svg"
+      }
+    },
+    {
+      "id": "agc.slope",
+      "label": "AGC slope",
+      "category": "AGC",
+      "files": {
+        "normal": "agc-slope-normal.svg",
+        "active": "agc-slope-active.svg",
+        "offline": "agc-slope-offline.svg"
+      }
+    },
+    {
+      "id": "iq.swap",
+      "label": "Swap I/Q",
+      "category": "Source",
+      "files": {
+        "normal": "iq-swap-normal.svg",
+        "active": "iq-swap-active.svg",
+        "offline": "iq-swap-offline.svg"
+      }
+    },
+    {
+      "id": "receiverRunning",
+      "label": "Receiver",
+      "category": "Source",
+      "files": {
+        "normal": "receiver-running-normal.svg",
+        "active": "receiver-running-active.svg",
+        "offline": "receiver-running-offline.svg"
+      }
+    },
+    {
+      "id": "zoom",
+      "label": "Spectrum zoom",
+      "category": "Display",
+      "files": {
+        "normal": "zoom-normal.svg",
+        "active": "zoom-active.svg",
+        "offline": "zoom-offline.svg"
+      }
+    },
+    {
+      "id": "spectrum.markPeaks",
+      "label": "Mark peaks",
+      "category": "Display",
+      "files": {
+        "normal": "spectrum-mark-peaks-normal.svg",
+        "active": "spectrum-mark-peaks-active.svg",
+        "offline": "spectrum-mark-peaks-offline.svg"
+      }
+    },
+    {
+      "id": "spectrum.attack",
+      "label": "Spectrum attack",
+      "category": "Display",
+      "files": {
+        "normal": "spectrum-attack-normal.svg",
+        "active": "spectrum-attack-active.svg",
+        "offline": "spectrum-attack-offline.svg"
+      }
+    },
+    {
+      "id": "spectrum.decay",
+      "label": "Spectrum decay",
+      "category": "Display",
+      "files": {
+        "normal": "spectrum-decay-normal.svg",
+        "active": "spectrum-decay-active.svg",
+        "offline": "spectrum-decay-offline.svg"
+      }
+    },
+    {
+      "id": "waterfall.attack",
+      "label": "Waterfall attack",
+      "category": "Display",
+      "files": {
+        "normal": "waterfall-attack-normal.svg",
+        "active": "waterfall-attack-active.svg",
+        "offline": "waterfall-attack-offline.svg"
+      }
+    },
+    {
+      "id": "waterfall.decay",
+      "label": "Waterfall decay",
+      "category": "Display",
+      "files": {
+        "normal": "waterfall-decay-normal.svg",
+        "active": "waterfall-decay-active.svg",
+        "offline": "waterfall-decay-offline.svg"
+      }
+    },
+    {
+      "id": "spectrum.timeMarkers",
+      "label": "Time markers",
+      "category": "Display",
+      "files": {
+        "normal": "spectrum-time-markers-normal.svg",
+        "active": "spectrum-time-markers-active.svg",
+        "offline": "spectrum-time-markers-offline.svg"
+      }
+    },
+    {
+      "id": "rds.useFec",
+      "label": "RDS error correction",
+      "category": "RDS",
+      "files": {
+        "normal": "rds-use-fec-normal.svg",
+        "active": "rds-use-fec-active.svg",
+        "offline": "rds-use-fec-offline.svg"
+      }
+    },
+    {
+      "id": "record.audio",
+      "label": "Audio recording",
+      "category": "Recorder",
+      "files": {
+        "normal": "record-audio-normal.svg",
+        "active": "record-audio-active.svg",
+        "offline": "record-audio-offline.svg"
+      }
+    },
+    {
+      "id": "rf.agcMode",
+      "label": "HF+ RF AGC",
+      "category": "Airspy HF+",
+      "files": {
+        "normal": "rf-agc-mode-normal.svg",
+        "active": "rf-agc-mode-active.svg",
+        "offline": "rf-agc-mode-offline.svg"
+      }
+    },
+    {
+      "id": "rf.lna",
+      "label": "HF+ LNA",
+      "category": "Airspy HF+",
+      "files": {
+        "normal": "rf-lna-normal.svg",
+        "active": "rf-lna-active.svg",
+        "offline": "rf-lna-offline.svg"
+      }
+    },
+    {
+      "id": "rf.attenuationDb",
+      "label": "HF+ attenuation",
+      "category": "Airspy HF+",
+      "files": {
+        "normal": "rf-attenuation-db-normal.svg",
+        "active": "rf-attenuation-db-active.svg",
+        "offline": "rf-attenuation-db-offline.svg"
+      }
+    },
+    {
+      "id": "preset",
+      "label": "Preset",
+      "category": "General",
+      "files": {
+        "normal": "preset-normal.svg",
+        "active": "preset-active.svg",
+        "offline": "preset-offline.svg"
+      }
+    },
+    {
+      "id": "layer",
+      "label": "Layer",
+      "category": "General",
+      "files": {
+        "normal": "layer-normal.svg",
+        "active": "layer-active.svg",
+        "offline": "layer-offline.svg"
+      }
+    },
+    {
+      "id": "layered",
+      "label": "Layered control",
+      "category": "General",
+      "files": {
+        "normal": "layered-normal.svg",
+        "active": "layered-active.svg",
+        "offline": "layered-offline.svg"
+      }
+    },
+    {
+      "id": "configurable",
+      "label": "Configurable control",
+      "category": "General",
+      "files": {
+        "normal": "configurable-normal.svg",
+        "active": "configurable-active.svg",
+        "offline": "configurable-offline.svg"
+      }
+    },
+    {
+      "id": "plugin",
+      "label": "SDR Control",
+      "category": "General",
+      "files": {
+        "normal": "plugin-normal.svg",
+        "active": "plugin-active.svg",
+        "offline": "plugin-offline.svg"
+      }
+    }
+  ]
+}

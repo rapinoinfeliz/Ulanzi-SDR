@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Preset — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  <rect x="4" y="4" width="136" height="136" rx="20" fill="none" stroke="#278CFF" stroke-width="5"/>
+  <path d="M43 20h58v82L72 83l-29 19z" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M72 35l6 12 14 2-10 10 2 14-12-7-12 7 2-14-10-10 14-2z" fill="#278CFF"/>
+</svg>

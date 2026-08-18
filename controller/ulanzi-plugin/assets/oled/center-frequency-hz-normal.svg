@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Center frequency — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  
+  <circle cx="72" cy="57" r="38" fill="none" stroke="#F5F7F8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="72" cy="57" r="17" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M72 13v18M72 83v18M28 57h18M98 57h18" fill="none" stroke="#F5F7F8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">CW shift — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  <rect x="4" y="4" width="136" height="136" rx="20" fill="none" stroke="#278CFF" stroke-width="5"/>
+  <circle cx="30" cy="56" r="7" fill="#FFFFFF"/><path d="M48 56h24M87 56h29" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M54 80h48M90 68l14 12-14 12" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

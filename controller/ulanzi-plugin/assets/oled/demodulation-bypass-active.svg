@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Bypass demodulation — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  <rect x="4" y="4" width="136" height="136" rx="20" fill="none" stroke="#278CFF" stroke-width="5"/>
+  <path d="M23 60c9 0 9-24 18-24s9 38 18 38 9-47 18-47 9 36 18 36" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 91c18 12 57 12 79-8M96 73l15 10-10 15" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Tuning step — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  <rect x="4" y="4" width="136" height="136" rx="20" fill="none" stroke="#278CFF" stroke-width="5"/>
+  <path d="M30 88h20V70h20V52h20V34h24" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M95 24l19 10-19 10" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

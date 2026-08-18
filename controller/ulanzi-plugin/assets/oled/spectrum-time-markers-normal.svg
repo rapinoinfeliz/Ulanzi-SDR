@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title">
+  <title id="title">Time markers — OLED Minimal</title>
+  <rect width="144" height="144" rx="22" fill="#000000"/>
+  
+  <circle cx="72" cy="57" r="39" fill="none" stroke="#F5F7F8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M72 35v25l19 12" fill="none" stroke="#278CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M72 18v8M72 88v8M33 57h8M103 57h8" fill="none" stroke="#F5F7F8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
