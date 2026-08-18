@@ -24,6 +24,7 @@ declare module "ulanzideck-api" {
     onParamFromApp(handler: Handler): this;
     onParamFromPlugin(handler: Handler): this;
     onDidReceiveGlobalSettings(handler: Handler): this;
+    onDidReceiveSettings(handler: Handler): this;
     onKeyDown(handler: Handler): this;
     onKeyUp(handler: Handler): this;
     onDialDown(handler: Handler): this;
@@ -31,6 +32,7 @@ declare module "ulanzideck-api" {
     onDialRotate(handler: Handler): this;
     onSendToPlugin(handler: Handler): this;
     getGlobalSettings(context?: string): void;
+    getSettings(context: string): void;
     setGlobalSettings(settings: Record<string, unknown>, context?: string): void;
     setSettings(settings: Record<string, unknown>, context: string): void;
     setStateIcon(context: string, state: number, text?: string): void;

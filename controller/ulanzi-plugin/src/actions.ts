@@ -1,10 +1,17 @@
 import { EventEmitter } from "node:events";
 import type { UlanziApi, UlanziMessage } from "ulanzideck-api";
-import type { RadioState } from "../../../protocol/src/types.js";
+import type { ConfigurableMapping, ControlBinding, RadioState } from "../../../protocol/src/types.js";
 import type { SettingsStore } from "./config.js";
 import type { ControlHub } from "./hub.js";
 
-export type ActionKind = "frequency" | "volume" | "filter" | "mode" | "gain" | "preset" | "recording" | "layer" | "layered";
+export type ActionKind = "frequency" | "volume" | "filter" | "mode" | "gain" | "preset" | "recording" | "layer" | "layered" | "configurable";
+
+export const DEFAULT_CONFIGURABLE_MAPPING: ConfigurableMapping = {
+  title: "CUSTOM",
+  rotate: { action: "adjust", control: "frequencyHz", amount: 1000 },
+  press: { action: "cycle", control: "stepHz" },
+  holdRotate: { action: "cycle", control: "mode" }
+};
 
 export interface ActionContext {
   context: string;
@@ -13,6 +20,7 @@ export interface ActionContext {
   isEncoder: boolean;
   dialMovedWhileDown: boolean;
   dialDownAt: number | undefined;
+  mapping?: ConfigurableMapping | undefined;
 }
 
 export class ActionController extends EventEmitter {
@@ -26,8 +34,9 @@ export class ActionController extends EventEmitter {
   ) { super(); }
 
   add(message: UlanziMessage): void {
-    const configuredKind = isActionKind((message.param as Record<string, unknown> | undefined)?.kind)
-      ? (message.param as Record<string, unknown>).kind as ActionKind
+    const saved = isRecord(message.settings) ? message.settings : isRecord(message.param) ? message.param : {};
+    const configuredKind = isActionKind(saved.kind)
+      ? saved.kind
       : kindFromUuid(message.uuid ?? message.context.split("___")[0] ?? "");
     this.contexts.set(message.context, {
       context: message.context,
@@ -35,7 +44,8 @@ export class ActionController extends EventEmitter {
       active: true,
       isEncoder: false,
       dialMovedWhileDown: false,
-      dialDownAt: undefined
+      dialDownAt: undefined,
+      mapping: configuredKind === "configurable" ? normalizeMapping(saved.mapping) : undefined
     });
   }
 
@@ -85,6 +95,30 @@ export class ActionController extends EventEmitter {
     return this.settings.get().presets[this.selectedPreset]?.name;
   }
 
+  getActionConfiguration(context: string | undefined): { kind?: ActionKind; mapping?: ConfigurableMapping | undefined } {
+    if (!context) return {};
+    const item = this.contexts.get(context);
+    return item ? { kind: item.kind, mapping: item.mapping ? structuredClone(item.mapping) : undefined } : {};
+  }
+
+  configure(context: string, candidate: unknown): ConfigurableMapping {
+    const item = this.contexts.get(context);
+    if (!item || item.kind !== "configurable") throw new Error("Configurable action is not active");
+    const mapping = normalizeMapping(candidate);
+    item.mapping = mapping;
+    this.api.setSettings({
+      kind: "configurable",
+      mapping: {
+        title: mapping.title,
+        rotate: mapping.rotate ?? null,
+        press: mapping.press ?? null,
+        holdRotate: mapping.holdRotate ?? null
+      }
+    }, context);
+    this.emit("display");
+    return structuredClone(mapping);
+  }
+
   private ensure(message: UlanziMessage): ActionContext {
     let item = this.contexts.get(message.context);
     if (!item) {
@@ -127,6 +161,9 @@ export class ActionController extends EventEmitter {
         case "layered":
           await this.rotateLayered(direction, held);
           break;
+        case "configurable":
+          await this.executeBinding(held ? item.mapping?.holdRotate ?? item.mapping?.rotate : item.mapping?.rotate, direction);
+          break;
         case "recording":
         case "layer":
           break;
@@ -168,6 +205,9 @@ export class ActionController extends EventEmitter {
           break;
         case "layered":
           await this.pressLayered();
+          break;
+        case "configurable":
+          await this.executeBinding(item.mapping?.press, 1);
           break;
       }
     } catch (error) {
@@ -235,6 +275,26 @@ export class ActionController extends EventEmitter {
     const next = values[(index + (direction < 0 ? -1 : 1) + values.length) % values.length];
     await this.hub.command("control.set", { control: "stepHz", value: next });
   }
+
+  private async executeBinding(binding: ControlBinding | undefined, direction: number): Promise<void> {
+    if (!binding) return;
+    if (!canWrite(this.hub, binding.control)) throw new Error(`${binding.control} is unavailable in the connected SDR`);
+    const effectiveDirection = binding.inverted ? -direction : direction;
+    switch (binding.action) {
+      case "adjust":
+        await this.hub.command("control.adjust", { control: binding.control, ticks: effectiveDirection, ...(binding.amount === undefined ? {} : { amount: binding.amount }) });
+        break;
+      case "cycle":
+        await this.hub.command("control.cycle", { control: binding.control, direction: effectiveDirection });
+        break;
+      case "toggle":
+        await this.hub.command("control.toggle", { control: binding.control });
+        break;
+      case "set":
+        await this.hub.command("control.set", { control: binding.control, value: binding.value });
+        break;
+    }
+  }
 }
 
 export function kindFromUuid(uuid: string): ActionKind {
@@ -244,7 +304,7 @@ export function kindFromUuid(uuid: string): ActionKind {
 }
 
 function isActionKind(value: unknown): value is ActionKind {
-  return typeof value === "string" && ["frequency", "volume", "filter", "mode", "gain", "preset", "recording", "layer", "layered"].includes(value);
+  return typeof value === "string" && ["frequency", "volume", "filter", "mode", "gain", "preset", "recording", "layer", "layered", "configurable"].includes(value);
 }
 
 export function isRecording(state: RadioState): boolean {
@@ -254,4 +314,36 @@ export function isRecording(state: RadioState): boolean {
 function canWrite(hub: ControlHub, capability: string): boolean {
   const access = hub.getCapabilities()[capability]?.access;
   return access === "write" || access === "readwrite";
+}
+
+export function normalizeMapping(candidate: unknown): ConfigurableMapping {
+  const value = isRecord(candidate) ? candidate : {};
+  const title = typeof value.title === "string" && value.title.trim() ? value.title.trim().slice(0, 18) : DEFAULT_CONFIGURABLE_MAPPING.title;
+  return {
+    title,
+    rotate: normalizeBinding(value.rotate, DEFAULT_CONFIGURABLE_MAPPING.rotate),
+    press: normalizeBinding(value.press, DEFAULT_CONFIGURABLE_MAPPING.press),
+    holdRotate: normalizeBinding(value.holdRotate, DEFAULT_CONFIGURABLE_MAPPING.holdRotate)
+  };
+}
+
+function normalizeBinding(candidate: unknown, fallback: ControlBinding | undefined): ControlBinding | undefined {
+  if (candidate === null || candidate === false) return undefined;
+  if (!isRecord(candidate)) return fallback ? structuredClone(fallback) : undefined;
+  const action = candidate.action;
+  const control = candidate.control;
+  if (!isBindingAction(action) || typeof control !== "string" || !/^[A-Za-z0-9_.]+$/.test(control)) return fallback ? structuredClone(fallback) : undefined;
+  const result: ControlBinding = { action, control };
+  if (typeof candidate.amount === "number" && Number.isFinite(candidate.amount) && candidate.amount > 0) result.amount = candidate.amount;
+  if (typeof candidate.value === "number" || typeof candidate.value === "string" || typeof candidate.value === "boolean") result.value = candidate.value;
+  if (candidate.inverted === true) result.inverted = true;
+  return result;
+}
+
+function isBindingAction(value: unknown): value is ControlBinding["action"] {
+  return value === "adjust" || value === "toggle" || value === "cycle" || value === "set";
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }

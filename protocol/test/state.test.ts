@@ -22,6 +22,20 @@ describe("control protocol", () => {
     expect(validateProtocolMessage({ type: "state.snapshot", state: { ...OFFLINE_STATE, volume: 2 } })).toBe(false);
   });
 
+  it("accepts typed generic SDR control state", () => {
+    expect(validateProtocolMessage({
+      type: "state.snapshot",
+      state: { ...OFFLINE_STATE, controls: { "squelch.enabled": true, "squelch.threshold": -80, "filter.type": "Hamming" } }
+    })).toBe(true);
+  });
+
+  it("rejects object injection into generic control state", () => {
+    expect(validateProtocolMessage({
+      type: "state.snapshot",
+      state: { ...OFFLINE_STATE, controls: { unsafe: { nested: true } } }
+    })).toBe(false);
+  });
+
   it("applies only newer dotted-path patches", () => {
     const patched = applyStatePatch(OFFLINE_STATE, { "rf.agcMode": "high", frequencyHz: 7100000 }, 2);
     expect(patched.frequencyHz).toBe(7100000);
@@ -36,4 +50,3 @@ describe("control protocol", () => {
     expect(state.volume).toBe(0);
   });
 });
-

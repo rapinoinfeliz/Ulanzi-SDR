@@ -109,7 +109,7 @@ internal sealed class AdapterConnection : IDisposable
             token,
             app = "sdrsharp",
             appVersion = version,
-            adapterVersion = "0.1.0",
+            adapterVersion = "0.2.0",
             architecture = RuntimeInformation.ProcessArchitecture.ToString().ToLowerInvariant(),
             sourceName = state.SourceConnected ? "SDR# source" : "No source",
             targetVfo = "Radio",

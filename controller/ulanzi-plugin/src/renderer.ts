@@ -81,6 +81,16 @@ function displayValue(
         : { title: "RF", value: "UNAVAILABLE", active: false };
       return { title: "TUNE", value: formatFrequency(state.frequencyHz), active: false };
     }
+    case "configurable": {
+      const binding = context.mapping?.rotate ?? context.mapping?.press ?? context.mapping?.holdRotate;
+      if (!binding || !supports(capabilities, binding.control)) return { title: context.mapping?.title ?? "CUSTOM", value: "UNAVAILABLE", active: false };
+      const current = readControlValue(state, binding.control);
+      return {
+        title: context.mapping?.title ?? capabilities[binding.control]?.label ?? "CUSTOM",
+        value: formatControlValue(current, binding.control, capabilities),
+        active: current === true
+      };
+    }
   }
 }
 
@@ -92,4 +102,34 @@ function formatFrequency(value: number): string {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(value % 1_000_000 === 0 ? 3 : 5)} MHz`;
   if (value >= 1_000) return `${(value / 1_000).toFixed(value % 1_000 === 0 ? 0 : 3)} kHz`;
   return `${value} Hz`;
+}
+
+function readControlValue(state: RadioState, control: string): number | string | boolean | undefined {
+  if (state.controls && control in state.controls) return state.controls[control];
+  switch (control) {
+    case "frequencyHz": return state.frequencyHz;
+    case "stepHz": return state.stepHz;
+    case "volume": return state.volume;
+    case "muted": return state.muted;
+    case "mode": return state.mode;
+    case "bandwidthHz": return state.bandwidthHz;
+    case "dsp.agc": return state.dspAgc?.enabled;
+    case "rf.agcMode": return state.rf?.agcMode;
+    case "rf.attenuationDb": return state.rf?.attenuationDb;
+    case "rf.lna": return state.rf?.lna;
+    case "record.audio": return isRecording(state);
+    case "receiverRunning": return state.receiverRunning;
+    default: return undefined;
+  }
+}
+
+function formatControlValue(value: number | string | boolean | undefined, control: string, capabilities: Capabilities): string {
+  if (value === undefined) return "N/A";
+  if (typeof value === "boolean") return value ? "ON" : "OFF";
+  if (typeof value === "string") return value.toUpperCase();
+  if (control === "volume") return `${Math.round(value * 100)}%`;
+  const unit = capabilities[control]?.unit;
+  if (unit === "Hz") return formatFrequency(value);
+  const formatted = Number.isInteger(value) ? value.toString() : value.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+  return unit ? `${formatted} ${unit}` : formatted;
 }

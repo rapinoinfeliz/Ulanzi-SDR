@@ -27,12 +27,18 @@ hub.on("state", (state) => renderer.schedule(state, state.recorder.status === "r
 actions.on("display", () => renderer.schedule(hub.getState(), true));
 hub.on("adapter", (hello) => api.toast(`${hello.app} connected: ${hello.sourceName}`));
 hub.on("warning", (error) => api.logMessage(String(error), "warn"));
-hub.on("property-inspector", (socket: WebSocket) => {
-  if (socket.readyState === WebSocket.OPEN) socket.send(JSON.stringify({ type: "config.snapshot", settings: settings.get() }));
-});
+hub.on("property-inspector", (socket: WebSocket, context?: string) => sendInspectorSnapshot(socket, context));
 hub.on("configuration-request", (candidate) => {
   const updated = settings.replace(candidate);
   api.setGlobalSettings({ ...updated });
+});
+hub.on("action-configuration-request", (context: string, candidate: unknown, socket: WebSocket) => {
+  try {
+    actions.configure(context, candidate);
+    sendInspectorSnapshot(socket, context);
+  } catch (error) {
+    if (socket.readyState === WebSocket.OPEN) socket.send(JSON.stringify({ type: "error", message: error instanceof Error ? error.message : String(error) }));
+  }
 });
 settings.on("changed", (updated) => {
   rigctlAdapter?.setPort(updated.sdrppRigctlPort);
@@ -49,6 +55,7 @@ api.onClose(() => api.logMessage("Disconnected from Ulanzi Studio", "warn"));
 api.onError((error) => api.logMessage(error, "error"));
 api.onAdd((message) => {
   actions.add(message);
+  api.getSettings(message.context);
   const context = actions.contexts.get(message.context);
   if (context) renderer.renderContext(context, hub.getState());
 });
@@ -63,11 +70,24 @@ api.onDialRotate((message) => actions.rotate(message));
 api.onParamFromApp((message) => refreshAction(message));
 api.onParamFromPlugin((message) => refreshAction(message));
 api.onDidReceiveGlobalSettings((message) => settings.replace(message.settings ?? message.param));
+api.onDidReceiveSettings((message) => refreshAction(message));
 
 function refreshAction(message: UlanziMessage): void {
   actions.add(message);
   const context = actions.contexts.get(message.context);
   if (context) renderer.renderContext(context, hub.getState());
+}
+
+function sendInspectorSnapshot(socket: WebSocket, context?: string): void {
+  if (socket.readyState !== WebSocket.OPEN) return;
+  socket.send(JSON.stringify({
+    type: "config.snapshot",
+    settings: settings.get(),
+    action: actions.getActionConfiguration(context),
+    capabilities: hub.getCapabilities(),
+    state: hub.getState(),
+    adapter: hub.getAdapterDescription()
+  }));
 }
 
 async function shutdown(): Promise<void> {

@@ -111,9 +111,11 @@ export class ControlHub extends EventEmitter {
         socket.close(1008, "Authentication failed");
         return;
       }
-      (socket as WebSocket & { role?: string }).role = "property-inspector";
+      const propertySocket = socket as WebSocket & { role?: string; actionContext?: string | undefined };
+      propertySocket.role = "property-inspector";
+      propertySocket.actionContext = validActionContext(url.searchParams.get("context")) ? url.searchParams.get("context")! : undefined;
       socket.on("message", (raw) => this.handlePropertyInspector(socket, raw.toString()));
-      this.emit("property-inspector", socket);
+      this.emit("property-inspector", socket, propertySocket.actionContext);
       return;
     }
 
@@ -195,9 +197,11 @@ export class ControlHub extends EventEmitter {
 
   private handlePropertyInspector(socket: WebSocket, raw: string): void {
     try {
-      const message = JSON.parse(raw) as { type?: string; settings?: unknown };
-      if (message.type === "config.get") this.emit("property-inspector", socket);
+      const message = JSON.parse(raw) as { type?: string; settings?: unknown; mapping?: unknown };
+      const context = (socket as WebSocket & { actionContext?: string }).actionContext;
+      if (message.type === "config.get") this.emit("property-inspector", socket, context);
       if (message.type === "config.set" && message.settings) this.emit("configuration-request", message.settings);
+      if (message.type === "action.config.set" && context) this.emit("action-configuration-request", context, message.mapping, socket);
     } catch {
       socket.send(JSON.stringify({ type: "error", message: "Invalid configuration message" }));
     }
@@ -242,4 +246,8 @@ function safeTokenEquals(left: string, right: string): boolean {
   const a = Buffer.from(left);
   const b = Buffer.from(right);
   return a.length === b.length && timingSafeEqual(a, b);
+}
+
+function validActionContext(value: string | null): value is string {
+  return value !== null && value.length <= 512 && /^com\.ulanzi\.ulanzistudio\.sdrcontrol\.[A-Za-z0-9_.-]+___[^_]+___[^_]+$/.test(value);
 }

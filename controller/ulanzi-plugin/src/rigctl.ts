@@ -166,7 +166,7 @@ export class SdrppRigctlAdapter {
         token: this.token,
         app: "sdrpp",
         appVersion: "stock-rigctl",
-        adapterVersion: "0.1.0",
+        adapterVersion: "0.2.0",
         architecture: process.arch,
         sourceName: "SDR++ Rigctl",
         targetVfo: "Radio",
@@ -217,9 +217,10 @@ export class SdrppRigctlAdapter {
     }
     try {
       switch (command.method) {
-        case "control.adjust": await this.adjust(String(command.params.control), Number(command.params.ticks)); break;
+        case "control.adjust": await this.adjust(String(command.params.control), Number(command.params.ticks), optionalPositiveNumber(command.params.amount)); break;
         case "control.set": await this.set(String(command.params.control), command.params.value); break;
         case "control.cycle": await this.cycle(String(command.params.control), Number(command.params.direction)); break;
+        case "control.toggle": await this.toggle(String(command.params.control)); break;
         case "preset.apply": await this.applyPreset(command.params.preset as Preset); break;
         case "record.audio.set": await this.setRecording(command.params.enabled === true); break;
         default: throw new UnsupportedError(`Unsupported command: ${command.method}`);
@@ -232,9 +233,9 @@ export class SdrppRigctlAdapter {
     }
   }
 
-  private async adjust(control: string, ticks: number): Promise<void> {
-    if (control === "frequencyHz") return this.set(control, this.state.frequencyHz + this.state.stepHz * ticks);
-    if (control === "bandwidthHz") return this.set(control, Math.max(1, this.state.bandwidthHz + ticks * Math.max(10, Math.floor(this.state.stepHz / 10))));
+  private async adjust(control: string, ticks: number, amount?: number): Promise<void> {
+    if (control === "frequencyHz") return this.set(control, this.state.frequencyHz + (amount ?? this.state.stepHz) * ticks);
+    if (control === "bandwidthHz") return this.set(control, Math.max(1, this.state.bandwidthHz + ticks * (amount ?? Math.max(10, Math.floor(this.state.stepHz / 10)))));
     throw new UnsupportedError(`${control} is unavailable through stock SDR++ Rigctl`);
   }
 
@@ -268,6 +269,11 @@ export class SdrppRigctlAdapter {
       return this.set(control, MODES[(index + (direction < 0 ? -1 : 1) + MODES.length) % MODES.length]);
     }
     throw new UnsupportedError(`${control} cannot be cycled through stock SDR++ Rigctl`);
+  }
+
+  private async toggle(control: string): Promise<void> {
+    if (control === "record.audio") return this.setRecording(this.state.recorder.status !== "recording");
+    throw new UnsupportedError(`${control} cannot be toggled through stock SDR++ Rigctl`);
   }
 
   private async applyPreset(preset: Preset): Promise<void> {
@@ -344,6 +350,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function validPort(value: number): boolean {
   return Number.isInteger(value) && value >= 1 && value <= 65535;
+}
+
+function optionalPositiveNumber(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isFinite(value) && value > 0 ? value : undefined;
 }
 
 function parseRigInteger(value: string | undefined, field: string, minimum: number): number {

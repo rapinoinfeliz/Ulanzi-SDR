@@ -5,12 +5,47 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Ulanzi SDR Control</title>
   <style>
-    body{font:13px system-ui,sans-serif;color:#eee;background:#252525;margin:16px}label{display:block;margin:12px 0 5px}input,textarea,select,button{box-sizing:border-box;width:100%;padding:8px;background:#161616;color:#fff;border:1px solid #555;border-radius:4px}textarea{min-height:180px;font-family:ui-monospace,monospace}button{margin-top:12px;background:#1167b1;border:0}#status{margin-bottom:12px;color:#f5c451}.row{display:flex;gap:8px;align-items:center}.row input{width:auto}
+    body{font:13px system-ui,sans-serif;color:#eee;background:#252525;margin:16px}label{display:block;margin:12px 0 5px}input,textarea,select,button{box-sizing:border-box;width:100%;padding:8px;background:#161616;color:#fff;border:1px solid #555;border-radius:4px}textarea{min-height:150px;font-family:ui-monospace,monospace}button{margin-top:12px;background:#1167b1;border:0}#status{margin-bottom:12px;color:#f5c451}.row{display:flex;gap:8px;align-items:center}.row input{width:auto}section{border-top:1px solid #555;margin-top:18px;padding-top:10px}h3{margin:4px 0 10px}.binding{padding:8px 10px 12px;margin:10px 0;background:#202020;border-radius:6px}.binding-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.binding label{margin-top:6px}.hint{color:#aaa;font-size:12px}.hidden{display:none}
   </style>
   <script src="../ws-port.js"></script>
 </head>
 <body>
   <div id="status">Conectando…</div>
+  <section id="actionConfig" class="hidden">
+    <h3>Controlo SDR# configurável</h3>
+    <div class="hint">Cada gesto é independente. A lista contém apenas capacidades anunciadas pelo SDR ligado.</div>
+    <label for="actionTitle">Título no botão/display</label>
+    <input id="actionTitle" maxlength="18" value="CUSTOM">
+    <div class="binding" data-binding="rotate">
+      <strong>Giro</strong>
+      <div class="binding-grid">
+        <label>Operação<select id="rotateAction"><option value="none">Nenhuma</option><option value="adjust">Ajustar valor</option><option value="cycle">Percorrer opções</option></select></label>
+        <label>Controlo<select id="rotateControl"></select></label>
+        <label>Incremento<input id="rotateAmount" type="number" min="0.000001" step="any"></label>
+        <label class="row"><input id="rotateInverted" type="checkbox"> Inverter direção</label>
+      </div>
+    </div>
+    <div class="binding" data-binding="press">
+      <strong>Pressão</strong>
+      <div class="binding-grid">
+        <label>Operação<select id="pressAction"><option value="none">Nenhuma</option><option value="toggle">Alternar</option><option value="cycle">Próxima opção</option><option value="set">Definir valor</option></select></label>
+        <label>Controlo<select id="pressControl"></select></label>
+        <label>Valor fixo<input id="pressValue"></label>
+      </div>
+    </div>
+    <div class="binding" data-binding="holdRotate">
+      <strong>Giro pressionado</strong>
+      <div class="binding-grid">
+        <label>Operação<select id="holdRotateAction"><option value="none">Nenhuma</option><option value="adjust">Ajustar valor</option><option value="cycle">Percorrer opções</option></select></label>
+        <label>Controlo<select id="holdRotateControl"></select></label>
+        <label>Incremento<input id="holdRotateAmount" type="number" min="0.000001" step="any"></label>
+        <label class="row"><input id="holdRotateInverted" type="checkbox"> Inverter direção</label>
+      </div>
+    </div>
+    <button id="saveAction">Salvar este botão/dial</button>
+  </section>
+  <section>
+  <h3>Configuração global</h3>
   <label class="row"><input id="v31" type="checkbox"> Feedback dinâmico V3.1 (Studio ≥ 3.3.0)</label>
   <label for="rigctlPort">Porta Rigctl do SDR++ (macOS)</label>
   <input id="rigctlPort" type="number" min="1" max="65535" value="4532">
@@ -21,6 +56,7 @@
   <label for="presets">Presets (JSON)</label>
   <textarea id="presets">[]</textarea>
   <button id="save">Salvar configuração global</button>
+  </section>
   <script src="inspector.js"></script>
 </body>
 </html>

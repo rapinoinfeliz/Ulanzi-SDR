@@ -1,5 +1,5 @@
 {
-  "Version": "0.1.0",
+  "Version": "0.2.0",
   "Author": "Ulanzi SDR Control",
   "Name": "SDR Control",
   "Description": "Bidirectional control for SDR# and SDR++",
@@ -114,6 +114,19 @@
       "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
       "Tooltip": "Radio: tune; RF: gain; Memory: presets",
       "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.layered",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad", "Encoder"],
+      "Devices": [],
+      "Encoder": { "layout": "$UA2" }
+    },
+    {
+      "Name": "Configurable SDR# Control",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
+      "Tooltip": "Assign independent SDR# operations to rotate, press and held rotate",
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.configurable",
       "DisableAutomaticStates": true,
       "Controllers": ["Keypad", "Encoder"],
       "Devices": [],

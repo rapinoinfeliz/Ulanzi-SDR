@@ -5,14 +5,17 @@ namespace SDRSharp.UlanziAdapter.Control;
 public sealed record CapabilityDescriptor
 {
     [JsonPropertyName("access")] public string Access { get; init; } = "readwrite";
+    [JsonPropertyName("label")] public string? Label { get; init; }
+    [JsonPropertyName("category")] public string? Category { get; init; }
+    [JsonPropertyName("unit")] public string? Unit { get; init; }
     [JsonPropertyName("minimum")] public double? Minimum { get; init; }
     [JsonPropertyName("maximum")] public double? Maximum { get; init; }
     [JsonPropertyName("step")] public double? Step { get; init; }
     [JsonPropertyName("values")] public object[]? Values { get; init; }
     [JsonPropertyName("experimental")] public bool? Experimental { get; init; }
 
-    public static CapabilityDescriptor ReadWrite(double? minimum = null, double? maximum = null, double? step = null, object[]? values = null, bool experimental = false) =>
-        new() { Minimum = minimum, Maximum = maximum, Step = step, Values = values, Experimental = experimental ? true : null };
+    public static CapabilityDescriptor ReadWrite(double? minimum = null, double? maximum = null, double? step = null, object[]? values = null, bool experimental = false, string? label = null, string? category = null, string? unit = null) =>
+        new() { Minimum = minimum, Maximum = maximum, Step = step, Values = values, Experimental = experimental ? true : null, Label = label, Category = category, Unit = unit };
 }
 
 public sealed record RecorderState
@@ -54,6 +57,7 @@ public sealed record RadioState
     [JsonPropertyName("rf")] public RfState? Rf { get; init; }
     [JsonPropertyName("recorder")] public RecorderState Recorder { get; init; } = new();
     [JsonPropertyName("signal")] public SignalState? Signal { get; init; }
+    [JsonPropertyName("controls")] public Dictionary<string, object> Controls { get; init; } = [];
 
     public string ToDisplayString() => $"{FrequencyHz:N0} Hz | {Mode} | BW {BandwidthHz:N0} Hz\r\nStep {StepHz:N0} Hz | Volume {Volume:P0} | Mute {Muted}\r\nRecorder: {Recorder.Status}";
 }
@@ -85,4 +89,3 @@ public sealed record CommandResult
     [JsonPropertyName("effectiveState")] public RadioState? EffectiveState { get; init; }
     [JsonPropertyName("error")] public CommandError? Error { get; init; }
 }
-

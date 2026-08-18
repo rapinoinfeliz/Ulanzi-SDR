@@ -31,10 +31,10 @@ internal sealed class HfPlusSourceCapabilities : IDisposable
     public Dictionary<string, CapabilityDescriptor> Describe()
     {
         var result = new Dictionary<string, CapabilityDescriptor>();
-        if (_agc?.CanRead == true && _agc.CanWrite) result["rf.agcMode"] = CapabilityDescriptor.ReadWrite(values: ["off", "auto"], experimental: true);
-        if (_preamp?.CanRead == true && _preamp.CanWrite) result["rf.lna"] = CapabilityDescriptor.ReadWrite(values: [true, false], experimental: true);
+        if (_agc?.CanRead == true && _agc.CanWrite) result["rf.agcMode"] = CapabilityDescriptor.ReadWrite(values: ["off", "auto"], experimental: true, label: "HF+ RF AGC", category: "Airspy HF+");
+        if (_preamp?.CanRead == true && _preamp.CanWrite) result["rf.lna"] = CapabilityDescriptor.ReadWrite(values: [true, false], experimental: true, label: "HF+ LNA", category: "Airspy HF+");
         var values = AttenuatorValues().Cast<object>().ToArray();
-        if (_attenuator?.CanRead == true && _attenuator.CanWrite && values.Length > 0) result["rf.attenuationDb"] = CapabilityDescriptor.ReadWrite(values: values, experimental: true);
+        if (_attenuator?.CanRead == true && _attenuator.CanWrite && values.Length > 0) result["rf.attenuationDb"] = CapabilityDescriptor.ReadWrite(values: values, experimental: true, label: "HF+ attenuation", category: "Airspy HF+", unit: "dB");
         return result;
     }
 
@@ -59,6 +59,14 @@ internal sealed class HfPlusSourceCapabilities : IDisposable
         var index = values.FindIndex(value => Math.Abs(value - current) < 0.01);
         index = Math.Clamp(index + ticks, 0, values.Count - 1);
         return WriteConvertedAndVerify(_attenuator, values[index]);
+    }
+
+    public bool SetAttenuation(double value)
+    {
+        var values = AttenuatorValues();
+        if (_attenuator is null || values.Count == 0) return false;
+        var selected = values.OrderBy(candidate => Math.Abs(candidate - value)).First();
+        return WriteConvertedAndVerify(_attenuator, selected);
     }
 
     private List<double> AttenuatorValues()

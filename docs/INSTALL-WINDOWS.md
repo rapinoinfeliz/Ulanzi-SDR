@@ -40,6 +40,8 @@ O plug-in procura automaticamente o endpoint local publicado pelo Ulanzi Studio 
 
 4. Reinicie o Ulanzi Studio e adicione as ações da categoria `SDR`.
 
+Para criar um mapeamento personalizado, adicione `Configurable SDR# Control`, selecione o botão/dial e configure separadamente giro, pressão e giro pressionado no painel lateral. Consulte [SDRSHARP-CONTROLS.md](SDRSHARP-CONTROLS.md).
+
 ## 4. Gravação e ganho HF+
 
 - `Audio Recording` grava o áudio demodulado `MonitorAF` em WAV PCM mono de 16 bits dentro de `Documentos\SDRSharp Recordings` e cria um JSON adjacente com frequência, modo, bandwidth, sample rate e buffers perdidos.

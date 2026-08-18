@@ -15,6 +15,7 @@ Nenhum patch ou recompilação do SDR++ é necessário. O plug-in do Ulanzi Stud
 | Modo e bandwidth | Sim | Sim |
 | Volume e mute | Sim | Não exposto por Rigctl |
 | Ganho/AGC/atenuação HF+ | Experimental e detectado em runtime | Não exposto por Rigctl |
+| Controles configuráveis por gesto | Catálogo amplo do `ISharpControl` | Somente capacidades Rigctl |
 | Presets | Sim | Sim, campos suportados |
 | Camadas | Sim | Sim |
 | Feedback em teclas/display | Sim | Sim |
@@ -61,5 +62,8 @@ O projeto fixa versões de dependências e o commit do SDK Node oficial do Ulanz
 - `Audio Recording`: pressão inicia ou encerra a gravação.
 - `Layer`: alterna `RADIO`, `RF` e `MEMORY`.
 - `Layered Control`: um único encoder cujo comportamento acompanha a camada: tuning, ganho RF ou presets.
+- `Configurable SDR# Control`: permite escolher separadamente a operação do giro, pressão e giro pressionado.
 
 Os passos, presets, porta Rigctl e feedback D200X são editados no painel de propriedades de qualquer ação.
+
+O catálogo detalhado de funções configuráveis do SDR# está em [docs/SDRSHARP-CONTROLS.md](docs/SDRSHARP-CONTROLS.md).

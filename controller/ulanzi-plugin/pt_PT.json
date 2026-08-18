@@ -10,6 +10,7 @@
     { "Name": "Predefinição" },
     { "Name": "Gravação de áudio" },
     { "Name": "Camada" },
-    { "Name": "Controlo por camada", "Tooltip": "Rádio: sintonia; RF: ganho; Memória: predefinições" }
+    { "Name": "Controlo por camada", "Tooltip": "Rádio: sintonia; RF: ganho; Memória: predefinições" },
+    { "Name": "Controlo SDR# configurável", "Tooltip": "Atribua operações SDR# independentes ao giro, pressão e giro pressionado" }
   ]
 }

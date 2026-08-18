@@ -45,5 +45,20 @@ describe("ControlHub", () => {
     expect(hub.getState().frequencyHz).toBe(7100000);
     socket.close();
   });
-});
 
+  it("binds property-inspector action configuration to its authenticated context", async () => {
+    const token = "c".repeat(64);
+    const hub = new ControlHub(token);
+    hubs.push(hub);
+    const port = await hub.start();
+    const context = "com.ulanzi.ulanzistudio.sdrcontrol.configurable___key1___action1";
+    const socket = new WebSocket(`ws://127.0.0.1:${port}/property-inspector?token=${token}&context=${encodeURIComponent(context)}`);
+    await new Promise<void>((resolve) => socket.once("open", resolve));
+    const received = new Promise<{ context: string; mapping: unknown }>((resolve) => {
+      hub.once("action-configuration-request", (actualContext, mapping) => resolve({ context: actualContext, mapping }));
+    });
+    socket.send(JSON.stringify({ type: "action.config.set", mapping: { title: "SQL" } }));
+    await expect(received).resolves.toEqual({ context, mapping: { title: "SQL" } });
+    socket.close();
+  });
+});

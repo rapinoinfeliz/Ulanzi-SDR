@@ -33,6 +33,8 @@ O hub mantém frequência, step, volume, mute, modo, bandwidth, RF, recorder e m
 
 Presets e camadas pertencem ao plug-in Ulanzi, portanto funcionam da mesma forma nos dois sistemas. Ao aplicar um preset, cada adaptador usa apenas os campos suportados.
 
+As instâncias de `Configurable SDR# Control` persistem um mapa por contexto Ulanzi. O painel recebe o catálogo de capacidades autenticado do hub, salva o binding com `setSettings` e nunca oferece um controle como se fosse universal: o adaptador conectado continua sendo a autoridade sobre disponibilidade, faixa e valores.
+
 ## Camadas
 
 `Layer` alterna globalmente:

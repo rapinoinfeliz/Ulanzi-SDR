@@ -109,10 +109,15 @@
           },
           "additionalProperties": false
         },
-        "signal": { "type": "object" }
+        "signal": { "type": "object" },
+        "controls": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }, { "type": "boolean" }]
+          }
+        }
       },
       "additionalProperties": false
     }
   }
 }
-

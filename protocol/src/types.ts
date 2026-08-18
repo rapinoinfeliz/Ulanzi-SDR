@@ -7,6 +7,9 @@ export type CapabilityAccess = "read" | "write" | "readwrite";
 
 export interface CapabilityDescriptor {
   access: CapabilityAccess;
+  label?: string;
+  category?: string;
+  unit?: string;
   minimum?: number;
   maximum?: number;
   step?: number;
@@ -44,6 +47,24 @@ export interface RadioState {
   };
   recorder: RecorderState;
   signal?: { snrDb?: number; peakDb?: number; floorDb?: number };
+  controls?: Record<string, number | string | boolean>;
+}
+
+export type BindingAction = "adjust" | "toggle" | "cycle" | "set";
+
+export interface ControlBinding {
+  action: BindingAction;
+  control: string;
+  amount?: number;
+  value?: number | string | boolean;
+  inverted?: boolean;
+}
+
+export interface ConfigurableMapping {
+  title: string;
+  rotate?: ControlBinding | undefined;
+  press?: ControlBinding | undefined;
+  holdRotate?: ControlBinding | undefined;
 }
 
 export interface AdapterHello {
@@ -111,4 +132,3 @@ export interface Preset {
   volume?: number;
   muted?: boolean;
 }
-
