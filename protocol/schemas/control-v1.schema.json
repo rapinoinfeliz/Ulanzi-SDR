@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ulanzi-sdr.local/schema/control-v1.json",
+  "oneOf": [
+    { "$ref": "#/$defs/hello" },
+    { "$ref": "#/$defs/snapshot" },
+    { "$ref": "#/$defs/patch" },
+    { "$ref": "#/$defs/command" },
+    { "$ref": "#/$defs/result" },
+    { "$ref": "#/$defs/heartbeat" }
+  ],
+  "$defs": {
+    "hello": {
+      "type": "object",
+      "required": ["type", "protocolVersion", "token", "app", "appVersion", "adapterVersion", "architecture", "sourceName", "targetVfo", "capabilities"],
+      "properties": {
+        "type": { "const": "adapter.hello" },
+        "protocolVersion": { "const": "1.0" },
+        "token": { "type": "string", "minLength": 32 },
+        "app": { "enum": ["sdrsharp", "sdrpp", "fake"] },
+        "appVersion": { "type": "string" },
+        "adapterVersion": { "type": "string" },
+        "architecture": { "type": "string" },
+        "sourceName": { "type": "string" },
+        "targetVfo": { "type": "string" },
+        "capabilities": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "type": "object",
+      "required": ["type", "state"],
+      "properties": { "type": { "const": "state.snapshot" }, "state": { "$ref": "#/$defs/state" } },
+      "additionalProperties": false
+    },
+    "patch": {
+      "type": "object",
+      "required": ["type", "revision", "changes"],
+      "properties": {
+        "type": { "const": "state.patch" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "changes": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "command": {
+      "type": "object",
+      "required": ["type", "id", "method", "params"],
+      "properties": {
+        "type": { "const": "command" },
+        "id": { "type": "string", "minLength": 1 },
+        "method": { "type": "string", "minLength": 1 },
+        "params": { "type": "object" },
+        "expectedRevision": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["type", "id", "ok"],
+      "properties": {
+        "type": { "const": "command.result" },
+        "id": { "type": "string" },
+        "ok": { "type": "boolean" },
+        "effectiveState": { "$ref": "#/$defs/state" },
+        "error": {
+          "type": "object",
+          "required": ["code", "message"],
+          "properties": {
+            "code": { "enum": ["unsupported", "invalid", "conflict", "not_ready", "host_mismatch", "io_error", "internal"] },
+            "message": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "heartbeat": {
+      "type": "object",
+      "required": ["type", "timestamp"],
+      "properties": { "type": { "const": "heartbeat" }, "timestamp": { "type": "number" } },
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "object",
+      "required": ["revision", "sourceConnected", "receiverRunning", "targetVfo", "frequencyHz", "stepHz", "volume", "muted", "mode", "bandwidthHz", "recorder"],
+      "properties": {
+        "revision": { "type": "integer", "minimum": 0 },
+        "sourceConnected": { "type": "boolean" },
+        "receiverRunning": { "type": "boolean" },
+        "targetVfo": { "type": "string" },
+        "frequencyHz": { "type": "integer", "minimum": 0 },
+        "stepHz": { "type": "integer", "minimum": 1 },
+        "volume": { "type": "number", "minimum": 0, "maximum": 1 },
+        "muted": { "type": "boolean" },
+        "mode": { "enum": ["NFM", "WFM", "AM", "DSB", "USB", "LSB", "CW", "RAW"] },
+        "bandwidthHz": { "type": "integer", "minimum": 1 },
+        "dspAgc": { "type": "object" },
+        "rf": { "type": "object" },
+        "recorder": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": { "enum": ["idle", "starting", "recording", "stopping", "error"] },
+            "path": { "type": "string" },
+            "durationSeconds": { "type": "number", "minimum": 0 },
+            "droppedBuffers": { "type": "integer", "minimum": 0 },
+            "error": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "signal": { "type": "object" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
+

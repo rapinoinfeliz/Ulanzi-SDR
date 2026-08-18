@@ -1,0 +1,8 @@
+{
+  "integration": "stock-rigctl",
+  "host": "127.0.0.1",
+  "defaultPort": 4532,
+  "requiresSourceChanges": false,
+  "supported": ["frequencyHz", "stepHz-hub-managed", "mode", "bandwidthHz", "record.audio-command"],
+  "unsupported": ["volume", "muted", "rf.agcMode", "rf.attenuationDb", "rf.lna", "receiver-state-verification", "recorder-state-verification"]
+}

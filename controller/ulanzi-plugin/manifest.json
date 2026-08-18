@@ -1,0 +1,128 @@
+{
+  "Version": "0.1.0",
+  "Author": "Ulanzi SDR Control",
+  "Name": "SDR Control",
+  "Description": "Bidirectional control for SDR# and SDR++",
+  "Icon": "assets/plugin.svg",
+  "Category": "SDR",
+  "CategoryIcon": "assets/plugin.svg",
+  "CodePath": "dist/app.js",
+  "Type": "JavaScript",
+  "PrivateAPI": false,
+  "SupportedInMultiActions": true,
+  "UUID": "com.ulanzi.ulanzistudio.sdrcontrol",
+  "Actions": [
+    {
+      "Name": "Frequency",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
+      "Tooltip": "Tune; press to change step",
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.frequency",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad", "Encoder"],
+      "Devices": [],
+      "Encoder": { "layout": "$UA2" }
+    },
+    {
+      "Name": "Volume / Mute",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Muted","Image":"assets/active.svg"}],
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.volume",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad", "Encoder"],
+      "Devices": [],
+      "Encoder": { "layout": "$UA2" }
+    },
+    {
+      "Name": "Filter / Mode",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.filter",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad", "Encoder"],
+      "Devices": [],
+      "Encoder": { "layout": "$UA2" }
+    },
+    {
+      "Name": "Mode",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.mode",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad"],
+      "Devices": []
+    },
+    {
+      "Name": "RF Gain",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"LNA","Image":"assets/active.svg"}],
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.gain",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad", "Encoder"],
+      "Devices": [],
+      "Encoder": { "layout": "$UA2" }
+    },
+    {
+      "Name": "Preset",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.preset",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad", "Encoder"],
+      "Devices": [],
+      "Encoder": { "layout": "$UA2" }
+    },
+    {
+      "Name": "Audio Recording",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Stopped","Image":"assets/normal.svg"},{"Name":"Recording","Image":"assets/active.svg"}],
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.recording",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad"],
+      "Devices": []
+    },
+    {
+      "Name": "Layer",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.layer",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad"],
+      "Devices": []
+    },
+    {
+      "Name": "Layered Control",
+      "Icon": "assets/normal.svg",
+      "PropertyInspectorPath": "property-inspector/index.html",
+      "state": 0,
+      "States": [{"Name":"Offline","Image":"assets/offline.svg"},{"Name":"Ready","Image":"assets/normal.svg"},{"Name":"Active","Image":"assets/active.svg"}],
+      "Tooltip": "Radio: tune; RF: gain; Memory: presets",
+      "UUID": "com.ulanzi.ulanzistudio.sdrcontrol.layered",
+      "DisableAutomaticStates": true,
+      "Controllers": ["Keypad", "Encoder"],
+      "Devices": [],
+      "Encoder": { "layout": "$UA2" }
+    }
+  ],
+  "OS": [
+    { "Platform": "mac", "MinimumVersion": "12" },
+    { "Platform": "windows", "MinimumVersion": "10" }
+  ],
+  "Software": { "MinVersion": "3.2.11" }
+}

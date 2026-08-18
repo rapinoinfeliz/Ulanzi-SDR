@@ -1,0 +1,15 @@
+{
+  "Name": "Controlo SDR",
+  "Description": "Controlo bidirecional para SDR# e SDR++",
+  "Actions": [
+    { "Name": "Frequência", "Tooltip": "Sintonizar; premir para mudar o passo" },
+    { "Name": "Volume / Silêncio" },
+    { "Name": "Filtro / Modo" },
+    { "Name": "Modo" },
+    { "Name": "Ganho RF" },
+    { "Name": "Predefinição" },
+    { "Name": "Gravação de áudio" },
+    { "Name": "Camada" },
+    { "Name": "Controlo por camada", "Tooltip": "Rádio: sintonia; RF: ganho; Memória: predefinições" }
+  ]
+}

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>SDRSharp.UlanziAdapter</RootNamespace>
+    <AssemblyName>SDRSharp.UlanziAdapter</AssemblyName>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SDRSharp.Common" HintPath="lib/SDRSharp.Common.dll" Private="false" />
+    <Reference Include="SDRSharp.Radio" HintPath="lib/SDRSharp.Radio.dll" Private="false" />
+  </ItemGroup>
+</Project>
+

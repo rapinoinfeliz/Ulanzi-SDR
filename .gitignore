@@ -1,0 +1,14 @@
+node_modules/
+dist/
+artifacts/
+coverage/
+*.user
+*.suo
+*.dylib
+*.dll
+*.pdb
+adapters/sdrsharp/lib/*.dll
+adapters/sdrsharp/lib/*.xml
+adapters/sdrsharp/bin/
+adapters/sdrsharp/obj/
+.DS_Store

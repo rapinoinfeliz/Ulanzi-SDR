@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ulanzi SDR Control</title>
+  <style>
+    body{font:13px system-ui,sans-serif;color:#eee;background:#252525;margin:16px}label{display:block;margin:12px 0 5px}input,textarea,select,button{box-sizing:border-box;width:100%;padding:8px;background:#161616;color:#fff;border:1px solid #555;border-radius:4px}textarea{min-height:180px;font-family:ui-monospace,monospace}button{margin-top:12px;background:#1167b1;border:0}#status{margin-bottom:12px;color:#f5c451}.row{display:flex;gap:8px;align-items:center}.row input{width:auto}
+  </style>
+  <script src="../ws-port.js"></script>
+</head>
+<body>
+  <div id="status">Conectando…</div>
+  <label class="row"><input id="v31" type="checkbox"> Feedback dinâmico V3.1 (Studio ≥ 3.3.0)</label>
+  <label for="rigctlPort">Porta Rigctl do SDR++ (macOS)</label>
+  <input id="rigctlPort" type="number" min="1" max="65535" value="4532">
+  <label for="layer">Camada ativa</label>
+  <select id="layer"><option value="radio">Rádio</option><option value="rf">RF</option><option value="memory">Memórias</option></select>
+  <label for="steps">Passos de frequência em Hz, separados por vírgula</label>
+  <input id="steps">
+  <label for="presets">Presets (JSON)</label>
+  <textarea id="presets">[]</textarea>
+  <button id="save">Salvar configuração global</button>
+  <script src="inspector.js"></script>
+</body>
+</html>

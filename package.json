@@ -1,0 +1,29 @@
+{
+  "name": "ulanzi-sdr-control",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.12.2"
+  },
+  "scripts": {
+    "build": "npm run typecheck && node scripts/build-controller.mjs",
+    "build:controller": "node scripts/build-controller.mjs",
+    "package:ulanzi": "npm run build && node scripts/package-ulanzi.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ulanzideck-api": "github:UlanziTechnology/plugin-common-node#9e478b2586a4ebdadbd590fc8f80519df18a8d32",
+    "ws": "8.21.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "@types/ws": "8.18.1",
+    "esbuild": "0.25.5",
+    "typescript": "5.8.3",
+    "vitest": "3.2.7"
+  }
+}

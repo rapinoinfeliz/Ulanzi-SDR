@@ -1,0 +1,21 @@
+[
+  {
+    "id": "40m-lsb",
+    "name": "40 m LSB",
+    "bank": "HF",
+    "frequencyHz": 7100000,
+    "mode": "LSB",
+    "bandwidthHz": 2700,
+    "stepHz": 100
+  },
+  {
+    "id": "airband-am",
+    "name": "Airband",
+    "bank": "VHF",
+    "frequencyHz": 118000000,
+    "mode": "AM",
+    "bandwidthHz": 10000,
+    "stepHz": 8333
+  }
+]
+

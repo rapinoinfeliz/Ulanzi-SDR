@@ -1,0 +1,10 @@
+{
+  "hostVersion": "1.0.0.1921",
+  "architecture": "x86",
+  "targetFramework": "net9.0-windows",
+  "sdkDownloadSha256": "9680d85714a14f53b046b5651664a10153604cc91d85f18b3eb9580e703b8935",
+  "publicControlApi": true,
+  "hfPlusReflectionShim": "experimental",
+  "audioHook": "MonitorAF"
+}
+
