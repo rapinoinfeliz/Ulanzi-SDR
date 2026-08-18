@@ -21,7 +21,7 @@ O plug-in conecta somente em `127.0.0.1`; não abre nem depende de acesso de red
    ```
 
 2. Feche completamente o Ulanzi Studio.
-3. Copie a pasta inteira `artifacts/com.ulanzi.ulanzistudio.sdrcontrol.ulanziPlugin` para:
+3. Copie a pasta inteira `artifacts/com.ulanzi.sdrcontrol.ulanziPlugin` para:
 
    ```text
    ~/Library/Application Support/Ulanzi/UlanziDeck/Plugins/
@@ -51,4 +51,3 @@ No painel de propriedades de qualquer ação:
 ## Limites deliberados
 
 O Rigctl nativo do SDR++ não oferece volume, mute nem controles do Airspy HF+. Essas ações aparecem como `UNAVAILABLE`. O projeto não usa atalhos de teclado, automação de interface, HID reverso ou alterações no SDR++ para contornar essa limitação.
-

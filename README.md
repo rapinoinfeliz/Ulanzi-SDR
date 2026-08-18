@@ -24,7 +24,7 @@ No macOS, botões sem API correspondente exibem `UNAVAILABLE` em vez de simular 
 
 ## Artefatos
 
-- Plug-in Ulanzi Studio: `artifacts/com.ulanzi.ulanzistudio.sdrcontrol.ulanziPlugin/`
+- Plug-in Ulanzi Studio: `artifacts/com.ulanzi.sdrcontrol.ulanziPlugin/`
 - Plug-in SDR#: `adapters/sdrsharp/bin/Release/net9.0-windows/SDRSharp.UlanziAdapter.dll`
 
 O diretório do Ulanzi é produzido por `npm run package:ulanzi`. O DLL do SDR# é produzido no Windows por `adapters/sdrsharp/build.ps1`.

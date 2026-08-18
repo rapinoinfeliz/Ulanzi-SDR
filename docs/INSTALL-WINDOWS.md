@@ -32,7 +32,7 @@ O plug-in procura automaticamente o endpoint local publicado pelo Ulanzi Studio 
 
 1. Execute `npm ci` e `npm run package:ulanzi` em uma máquina com Node.js, ou use a pasta já produzida em `artifacts/`.
 2. Feche o Ulanzi Studio.
-3. Copie `artifacts/com.ulanzi.ulanzistudio.sdrcontrol.ulanziPlugin` para:
+3. Copie `artifacts/com.ulanzi.sdrcontrol.ulanziPlugin` para:
 
    ```text
    %APPDATA%\Ulanzi\UlanziDeck\Plugins\
@@ -46,4 +46,3 @@ O plug-in procura automaticamente o endpoint local publicado pelo Ulanzi Studio 
 - O adaptador limita cada WAV a aproximadamente 2 GB.
 - Volume, mute, tuning, step, modo e filtro usam membros públicos de `ISharpControl`.
 - AGC, LNA e atenuação do HF+ são detectados em runtime. A ação só é anunciada quando a fonte Airspy da versão instalada expõe propriedades públicas compatíveis; caso contrário, o display mostra `UNAVAILABLE`.
-
