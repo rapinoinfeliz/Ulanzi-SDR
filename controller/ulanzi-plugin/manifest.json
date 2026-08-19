@@ -1,5 +1,5 @@
 {
-  "Version": "0.3.0",
+  "Version": "0.4.0",
   "Author": "Ulanzi SDR Control",
   "Name": "SDR Control",
   "Description": "Bidirectional control for SDR# and SDR++",

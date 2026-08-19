@@ -1,0 +1,77 @@
+{
+  "name": "SDR — Estação Completa",
+  "formatVersion": 2,
+  "pluginVersion": "0.4.0",
+  "devices": [
+    {
+      "id": "d200x",
+      "name": "SDR — Estação Completa — D200X",
+      "model": "D200X",
+      "output": "Station-Complete-D200X.ulanziDeckProfile",
+      "keypad": {
+        "0_0": { "title": "RX", "icon": "receiverRunning", "press": { "action": "toggle", "control": "receiverRunning" } },
+        "1_0": { "title": "MUTE", "icon": "muted", "press": { "action": "toggle", "control": "muted" } },
+        "2_0": { "title": "PRESET", "icon": "preset", "kind": "preset" },
+        "3_0": { "title": "AM", "icon": "mode", "press": { "action": "set", "control": "mode", "value": "AM" } },
+        "4_0": { "title": "USB", "icon": "mode", "press": { "action": "set", "control": "mode", "value": "USB" } },
+        "0_1": { "title": "LSB", "icon": "mode", "press": { "action": "set", "control": "mode", "value": "LSB" } },
+        "1_1": { "title": "CW", "icon": "mode", "press": { "action": "set", "control": "mode", "value": "CW" } },
+        "2_1": { "title": "NFM", "icon": "mode", "press": { "action": "set", "control": "mode", "value": "NFM" } },
+        "3_1": { "title": "WFM", "icon": "mode", "press": { "action": "set", "control": "mode", "value": "WFM" } },
+        "4_1": { "title": "SQL", "icon": "squelch.enabled", "press": { "action": "toggle", "control": "squelch.enabled" } },
+        "0_2": { "title": "DSP AGC", "icon": "dsp.agc", "press": { "action": "toggle", "control": "dsp.agc" } },
+        "1_2": { "title": "RF AGC", "icon": "rf.agcMode", "press": { "action": "cycle", "control": "rf.agcMode" } },
+        "2_2": { "title": "LNA", "icon": "rf.lna", "press": { "action": "toggle", "control": "rf.lna" } },
+        "3_2": { "title": "REC", "icon": "record.audio", "kind": "recording" }
+      },
+      "encoder": {
+        "0_2": {
+          "title": "FILTER",
+          "icon": "bandwidthHz",
+          "rotate": { "action": "adjust", "control": "bandwidthHz", "amount": 100 },
+          "press": { "action": "cycle", "control": "filter.type" },
+          "holdRotate": { "action": "cycle", "control": "mode" }
+        },
+        "1_2": {
+          "title": "AUDIO",
+          "icon": "volume",
+          "rotate": { "action": "adjust", "control": "volume", "amount": 0.02 },
+          "press": { "action": "toggle", "control": "muted" },
+          "holdRotate": { "action": "adjust", "control": "audio.panning", "amount": 0.05 }
+        },
+        "2_2": {
+          "title": "HF+ RF",
+          "icon": "rf.attenuationDb",
+          "rotate": { "action": "cycle", "control": "rf.attenuationDb" },
+          "press": { "action": "toggle", "control": "rf.lna" },
+          "holdRotate": { "action": "cycle", "control": "rf.agcMode" }
+        }
+      }
+    },
+    {
+      "id": "d100h",
+      "name": "SDR — Estação Completa — D100H",
+      "model": "Dial",
+      "output": "Station-Complete-D100H.ulanziDeckProfile",
+      "keypad": {
+        "0_0": { "title": "SNAP", "icon": "snapToGrid", "press": { "action": "toggle", "control": "snapToGrid" } },
+        "1_0": { "title": "CENTER", "icon": "centerFrequencyLocked", "press": { "action": "toggle", "control": "centerFrequencyLocked" } },
+        "2_0": { "title": "STYLE", "icon": "tuning.style", "press": { "action": "cycle", "control": "tuning.style" } },
+        "0_1": { "title": "SHIFT", "icon": "frequencyShift.enabled", "press": { "action": "toggle", "control": "frequencyShift.enabled" } },
+        "1_1": { "title": "FREEZE", "icon": "tuning.styleFrozen", "press": { "action": "toggle", "control": "tuning.styleFrozen" } },
+        "2_1": { "title": "MUTE", "icon": "muted", "press": { "action": "toggle", "control": "muted" } },
+        "1_2": { "title": "PRESET", "icon": "preset", "kind": "preset" },
+        "2_2": { "title": "REC", "icon": "record.audio", "kind": "recording" }
+      },
+      "encoder": {
+        "0_2": {
+          "title": "TUNE",
+          "icon": "frequencyHz",
+          "rotate": { "action": "adjust", "control": "frequencyHz" },
+          "press": { "action": "cycle", "control": "stepHz" },
+          "holdRotate": { "action": "adjust", "control": "centerFrequencyHz" }
+        }
+      }
+    }
+  ]
+}
